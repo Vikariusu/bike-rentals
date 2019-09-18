@@ -16,7 +16,7 @@ class App extends React.Component {
   // so can be converted to network call later
   fetchRentals = () => {
     const products = rentals.default.products;
-    this.setState({products})
+    this.setState({ products })
   }
 
   componentDidMount = () => {
@@ -26,8 +26,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1 className="header-main">Bike rentals</h1>
-        <RentalsForm 
+        <h1 className="header-main">Bike rental</h1>
+        <RentalsForm
           products={this.state.products}
         />
       </div>
