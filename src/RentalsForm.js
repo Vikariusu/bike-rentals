@@ -12,8 +12,8 @@ class RentalsForm extends React.Component {
     }
 
     // // checks if the product was selected
-    isSelected = (rental) => {
-        return this.state.selectedProductIds.indexOf(rental.id) >= 0;
+    isSelected = (product) => {
+        return this.state.selectedProductIds.indexOf(product.id) >= 0;
     }
 
     // checks if at least one bike was selected
@@ -31,7 +31,7 @@ class RentalsForm extends React.Component {
         return hasBike;
     }
 
-    // // toggles selecting a product
+    // toggles selecting a product
     toggleSelect = (e, rental) => {
         e.preventDefault();
 
@@ -48,16 +48,18 @@ class RentalsForm extends React.Component {
         event.preventDefault();
         this.setState({ errorMessage: '' });
 
+        // sets the error message if no bikes were selected
         if (!this.hasBike()) {
             this.setState({ errorMessage: 'Please select a bike' });
             return;
         }
 
+        // the form submission was successful
         this.setState({ wasSubmitted: true });
         // placeholder for network request
         console.log(this.state.selectedProductIds);
 
-        // clean up the form after a successful submission
+        // cleans up the form after a successful submission
         this.setState({
             selectedProductIds: []
         })

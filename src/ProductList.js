@@ -14,6 +14,7 @@ class ProductList extends React.Component {
         }
     }
 
+    // maps through products and displays a list
     displayOptions = (data) => {
         return data.map((rental) => {
             let isSelected = this.props.isSelected(rental);
