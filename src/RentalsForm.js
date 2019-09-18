@@ -19,7 +19,7 @@ class RentalsForm extends React.Component {
     // checks if at least one bike was selected
     // used as form validation on handleSubmit()
     hasBike = () => {
-        const bikeIds = this.filterProducts('bike').map( product => product.id );
+        const bikeIds = this.filterProducts('bike').map(product => product.id);
         let hasBike = false;
 
         this.state.selectedProductIds.forEach(productId => {
@@ -36,11 +36,11 @@ class RentalsForm extends React.Component {
         e.preventDefault();
 
         if (this.isSelected(rental)) {
-            const productRemoved = this.state.selectedProductIds.filter((productId) => { return rental.id !== productId} )
-            this.setState({ selectedProductIds: productRemoved  } )
+            const productRemoved = this.state.selectedProductIds.filter((productId) => { return rental.id !== productId })
+            this.setState({ selectedProductIds: productRemoved })
         } else {
             const productAdded = [...this.state.selectedProductIds, rental.id]
-            this.setState({selectedProductIds: productAdded})
+            this.setState({ selectedProductIds: productAdded })
         }
     }
 
@@ -68,18 +68,18 @@ class RentalsForm extends React.Component {
     calculateTotal = () => {
         let total = 0;
 
-        this.state.selectedProductIds.forEach( (productId) => {
+        this.state.selectedProductIds.forEach((productId) => {
             const matchingProduct = this.props.products.find((product) => product.id === productId)
             total += matchingProduct.price
 
-        } )
+        })
 
-        return total;
+        return total.toFixed(2);;
     }
 
     filterProducts = (productType) => {
-        return this.props.products.filter( (product) => {
-            return product.product_type === productType 
+        return this.props.products.filter((product) => {
+            return product.product_type === productType
         });
     }
 
@@ -91,11 +91,11 @@ class RentalsForm extends React.Component {
             <form onSubmit={this.handleSubmit} className="rental-form">
                 {hasErrors}
                 {wasSubmitted}
-                <ProductList 
+                <ProductList
                     products={this.filterProducts('bike')}
                     selectedProductIds={this.state.selectedProductIds}
-                    toggleSelect = {this.toggleSelect}
-                    isSelected = {this.isSelected}
+                    toggleSelect={this.toggleSelect}
+                    isSelected={this.isSelected}
                     title='Bikes'
                 />
                 <ProductList
